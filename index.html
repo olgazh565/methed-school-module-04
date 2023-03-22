@@ -9,9 +9,6 @@
         input, textarea{
             display: block;
         }
-        div{
-            display: flex;
-        }
         form{
             width: 30%;
         }
@@ -32,13 +29,11 @@
                         <input type="text" name="units">
                     </label>
                     <label>Дисконт
-                        <div>
-                            <input type="checkbox" value="discount">
-                            <input type="text" disabled>
-                        </div>
+                        <input type="checkbox" name="discount" value="true">
                     </label>
+                        <input type="text" name="discount_type" disabled>                    
                     <label>Описание
-                        <textarea type="text" name="description"></textarea>
+                        <textarea name="description"></textarea>
                     </label>
                     <label>Количество
                         <input type="text" name="count">
