@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM-ShopOnline</title>
     <style>
-        input, textarea{
-            display: block;
-        }
         form{
             width: 30%;
         }
+        input, textarea{
+            display: block;
+        }
+        div{
+            display: flex;
+        }
+
     </style>
 </head>
 <body>
@@ -28,10 +32,11 @@
                     <label>Единицы измерения
                         <input type="text" name="units">
                     </label>
-                    <label>Дисконт
-                        <input type="checkbox" name="discount" value="true">
-                    </label>
-                        <input type="text" name="discount_type" disabled>                    
+                    <label for="discount">Дисконт</label>
+                    <div>
+                        <input type="checkbox" name="discount" value="true" id="discount">                    
+                        <input type="text" name="discount_type" disabled>   
+                    </div>                 
                     <label>Описание
                         <textarea name="description"></textarea>
                     </label>
