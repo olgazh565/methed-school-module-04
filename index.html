@@ -5,52 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM-ShopOnline</title>
-    <style>
-        form{
-            width: 30%;
-        }
-        input, textarea{
-            display: block;
-        }
-        div{
-            display: flex;
-        }
-    </style>
+
+    <link rel="preload" href="./assets/fonts/inter-regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/normalize.css">    
 </head>
 <body>
-    <form action="https://jsonplaceholder.typicode.com/posts" method="POST" target="_blank">
-        <fieldset>
-            <h1>Добавить товар</h1>
-                <fieldset>
-                    <label>Наименование
-                        <input type="text" name="name">
-                    </label>
-                    <label>Категория
-                        <input type="text" name="category">
-                    </label>
-                    <label>Единицы измерения
-                        <input type="text" name="units">
-                    </label>
-                    <label for="discount">Дисконт</label>
-                    <div>
-                        <input type="checkbox" name="discount" value="true" id="discount">                    
-                        <input type="text" name="discount_type" disabled>   
-                    </div>                 
-                    <label>Описание
-                        <textarea name="description"></textarea>
-                    </label>
-                    <label>Количество
-                        <input type="number" name="count">
-                    </label>
-                    <label>Цена
-                        <input type="number" name="price">
-                    </label>
-                    <br>
-                    <input type="file" name="file" accept="image/jpg">
-                </fieldset>
-            <br>
-            <button type="submit">Добавить товар</button>
-        </fieldset>
-    </form>
+    <div class="modal"> 
+        <p class="modal__title">Добавить товар</p>
+
+        <form class="modal__form form" action="https://jsonplaceholder.typicode.com/posts" method="POST" target="_blank"> 
+
+            <fieldset class="form__fieldset">
+                <label class="form__label" for="name">Наименование</label>
+                <input class="form__input" type="text" name="name" id="name">
+                
+                <label class="form__label" for="category">Категория</label>
+                <input class="form__input" type="text" name="category" id="category">
+                
+                <label class="form__label" for="units">Единицы измерения</label>
+                <input class="form__input" type="text" name="units" id="units">                        
+                
+                <label class="form__label form__label_type_checkbox" for="discount">Дисконт</label>
+                <input class="form__input form__input_type_checkbox" type="checkbox" id="discount">
+                
+                <input class="form__input form__input_type_disabled" type="number" aria-label="Добавить скидку" disabled> 
+                <label class="form__label" for="description">Описание</label>
+                <textarea class="form__input form__input_type_textarea" name="description" id="description"></textarea>
+                
+                <label class="form__label" for="count">Количество</label>
+                <input class="form__input" type="number" name="count" id="count">
+                
+                <label class="form__label" for="price">Цена</label>
+                <input class="form__input" type="number" name="price" id="price">
+                
+            </fieldset>
+
+            <button class="form__button" type="submit">Добавить товар</button>
+        </form>
+
+        <button class="modal__close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L22 22" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+                <path d="M2 22L22 2" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+            </svg>                        
+        </button>
+    </div>
+
 </body>
 </html>
