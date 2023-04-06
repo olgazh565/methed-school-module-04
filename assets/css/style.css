@@ -1,86 +1,36 @@
-@font-face {
-    font-family: 'Inter';
-    font-display: swap;
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/inter-regular.woff2') format('woff2'),
-        url('../fonts/inter-regular.woff') format('woff');
-}
-
-html {
-    position: relative;
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-body {
-    min-width: 320px;
-    min-height: 100vh;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #6E6893;
-}
-
-
-img, svg {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-}
-
-
-button {
-    padding: 0;
-    cursor: pointer;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-h1,
-h2,
-h3,
-p,
-figure,
-fieldset {
-    margin: 0;
-}
+@import 'global.css';
+@import 'normalize.css';
 
 .modal {
+    padding: 20px 0;
+}
+
+.modal__container {
     position: relative;
     margin: 0 auto;
     min-height: 823px;
-    width: 792px;
+    max-width: 792px;
     padding: 32px 106px 28px;
     background: #F2F0F9;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
 
-.modal__title {
+.modal__heading {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
     letter-spacing: 0.1em;
     margin: 0 0 43px;
+}
+
+.modal__close {
+    padding: 0;
+    border-color: transparent;
+    background-color: transparent;
+    position: absolute;
+    top: 20px;
+    right: 30px;
 }
 
 .form__fieldset {
@@ -100,45 +50,42 @@ fieldset {
 
 .form__input {
     display: block;
-    width: 524px;
-    height: 40px;
+    width: 100%;
     background-color: #F4F2FF;
     border-radius: 6px;
     border: none;
     margin-bottom: 12px;
-    padding: 0;
+    resize: none;
+    font-size: 16px;
+    line-height: 1.125;
+    padding: 11px;
 }
 
 .form__input:last-child {
     margin: 0;
 }
 
-.form__input_type_textarea {
-    height: 112px;
-    overflow: auto;
+.form__input:disabled {
+    background-color: #EEEEEE;
 }
 
-.form__label_type_checkbox {
+.form__checkbox-wrapper {
+    margin-bottom: 12px;
+    padding: 0 0 0 50px;
     position: relative;
-    cursor: pointer;
 }
 
-.form__input_type_checkbox {
+.form__checkbox {
     position: absolute;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 40px;
     cursor: pointer;
+    top: 0;
+    left: 0;
 }
 
-.form__input_type_disabled {
-    width: 474px;    
-    background-color: #EEEEEE;
-    float: right;
-}
-
-.form__input_type_checkbox::before {
+.form__checkbox::before {
     content: '';
     position: absolute;
     top: 0;
@@ -150,7 +97,7 @@ fieldset {
     border-radius: 6px;
 }
 
-.form__input_type_checkbox:after {
+.form__checkbox:after {
     content: '';
     position: absolute;
     top: 12px;
@@ -164,16 +111,12 @@ fieldset {
     transform: rotate(-45deg);
 }
 
-.form__input_type_checkbox:checked:after {
+.form__checkbox:checked:after {
     opacity: 1
 }
 
-.form__input_type_checkbox:checked ~ .form__input_type_disabled {
+.form__checkbox:checked ~ .form__input:disabled {
     background-color: #F4F2FF;
-}
-
-.form__input_type_checkbox:not(:checked) .form__input_type_disabled {
-    background-color:  #EEEEEE;
 }
 
 .form__button {
@@ -181,9 +124,10 @@ fieldset {
     font-weight: 600;
     font-size: 16px;
     line-height: 19px;
+    text-transform: uppercase;
     color: #FFFFFF;
     width: 200px;
-    height: 39px;
+    padding: 10px;    
     background: #6D5BD0;
     border-radius: 6px;
     border: none;
@@ -191,10 +135,3 @@ fieldset {
     margin-right: 24px;
 }
 
-.modal__close {
-    padding: 0;
-    border-color: transparent;
-    position: absolute;
-    top: 20px;
-    right: 30px;
-}
