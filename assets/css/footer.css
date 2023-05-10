@@ -83,3 +83,14 @@
         grid-area: navigation;
     }
 }
+
+@media (max-width: 400px) {
+    .footer {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'display-per-page'
+            'page-count'
+            'navigation';
+        justify-content: start;
+    }
+} 
