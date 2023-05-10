@@ -5,6 +5,8 @@
     gap: 50px;
     justify-content: end;
     background-color: #F4F2FF;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .display-per-page {
@@ -60,4 +62,24 @@
 .items-navigation__btn:focus,
 .items-navigation__btn:active {
     outline: 1px solid #6D5BD0;
+}
+
+@media (max-width: 570px) {
+    .footer {
+        grid-template-columns: repeat(2, max-content);
+        grid-template-areas: 
+            'display-per-page .'
+            'page-count navigation';
+        gap: 20px 0;
+        justify-content: space-between;
+    }
+    .display-per-page {
+        grid-area: display-per-page;
+    }
+    .footer__items-shown {
+        grid-area: page-count;
+    }
+    .footer__items-navigation {
+        grid-area: navigation;
+    }
 }

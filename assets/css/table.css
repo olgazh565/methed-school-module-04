@@ -1,5 +1,6 @@
 .wrapper {
-    min-width: 950px;
+    min-width: 990px;
+    overflow-x: auto;
 }
 
 .table {
@@ -63,28 +64,32 @@ td {
     outline: 0;
     outline-offset: 2px;
     color: #6E6893;
-    background: transparent;
+    background: center/cover no-repeat;
 }
 
+.products__btn:hover,
 .products__btn:focus,
 .products__btn:active {
     outline: 1px solid #6D5BD0;
 }
 
-.products__btn:hover svg {
-    color: #6D5BD0;
+.products__image-btn {
+    background-image: url('../imgs/no-image.svg');
 }
 
-.products__image img {
-    min-width: 20px;
-    min-height: 20px;
+.products__image-btn_active {
+    background-image: url('../imgs/picture.svg');
+}
+
+.products__edit-btn {
+    background-image: url('../imgs/edit.svg');
+}
+
+.products__delete-btn {
+    background-image: url('../imgs/delete.svg');
 }
 
 @media (max-width: 990px) {
-    .wrapper {
-        overflow: auto;
-    }
-
     .products__name {
         min-width: 290px;
     }
