@@ -128,3 +128,12 @@
     }
 }
 
+@media (max-width: 510px) {
+    .tool-bar {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'filter'
+            'search'
+            'add-btn';
+    }
+}
