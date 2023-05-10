@@ -1,12 +1,12 @@
 'use strict';
 
-const productName = 'book';
+const productName = 'книга';
 const productAmount = 20;
-const productCategory = 'education';
+const productCategory = 'образование';
 const productPrice = 300;
 
-console.log(productName);
+console.log('Наименование товара: ' + productName);
 
 const productTotal = productAmount * productPrice;
 
-console.log(productTotal + ' рублей');
+console.log('Общая сумма товара: ' + productTotal + ' рублей');
