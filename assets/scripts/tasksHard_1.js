@@ -6,10 +6,13 @@ const income = +prompt('Cумма вашего дохода?');
 let taxSum;
 
 switch (true) {
+    case (income2 <= 0):
+        taxSum2 = 0;
+        break;
     case (income < 15000):
         taxSum = income * 0.13
         break;
-    case (15000 <= income && income < 50000):
+    case (income < 50000):
         taxSum = income * 0.2
         break;
     case (income >= 50000):
