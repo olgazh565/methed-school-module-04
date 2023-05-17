@@ -20,9 +20,7 @@ const calculate = (basketTotalSum, basketGoodsNumber, promocode) => {
         discount += 500;
     }
 
-    const basketTotalSumWithDiscount = basketTotalSum - discount;
-
-    return basketTotalSumWithDiscount;
+    return basketTotalSum - discount;
 }
 
 console.log(calculate(40000, 11, 'METHED'));

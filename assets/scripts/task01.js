@@ -1,12 +1,10 @@
 'use strict';
 
-const dollarExchangeRate = 73;
-const euroExchangeRate = 1.2 * dollarExchangeRate;
-
 const exchangeCurrency = (totalSumEuro) => {
-    const totalSumRUB = totalSumEuro * euroExchangeRate;
+    const dollarExchangeRate = 73;
+    const euroExchangeRate = 1.2 * dollarExchangeRate;
 
-    return totalSumRUB;
+    return totalSumEuro * euroExchangeRate;
 }
 
 console.log('Стоимость покупки в рублях: ' +  exchangeCurrency(1000));
