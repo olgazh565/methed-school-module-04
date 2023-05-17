@@ -1,7 +1,11 @@
 'use strict';
 
-const modifyString = (string) => {
-    return string.trim().substring(0, 1).toUpperCase() + string.trim().substring(1).toLowerCase();
+const isPrime = (number) => {
+    for (let i = 2; i < number; i++) {
+        if (number % i === 0) {
+            return false
+        }
+    } return true
 }
 
-console.log(modifyString('привет Мир'));
+console.log(isPrime(25));
