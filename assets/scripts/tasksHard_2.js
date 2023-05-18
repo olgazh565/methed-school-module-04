@@ -4,24 +4,31 @@
 
 const income2 = +prompt('Укажите сумму вашего дохода?');
 let taxSum2;
-const sumLimitFirst = 14999;
-const sumLimitSecond = 50000;
+let sumLeft;
 
-switch (true) {
-    case (income2 <= 0):
-        taxSum2 = 0;
-        break;
-    case (income2 < 15000):
-        taxSum2 = income2 * 0.13;
-        break;
-    case (income2 < 50000):
-        taxSum2 = (income2 - sumLimitFirst) * 0.2 + sumLimitFirst * 0.13;
-        break;
-    case (income2 >= 50000):
-        taxSum2 = (income2 - sumLimitSecond) * 0.3 + (sumLimitSecond - sumLimitFirst) * 0.2 + sumLimitFirst * 0.13;
-        break;
-    default:
-        break;
+if (income2 >= 50000) {
+    taxSum2 = (income2 - 50000) * 0.3;
+    sumLeft = 50000;
 }
 
-console.log('Сумма налога: ' + Math.round(taxSum2));
+if (sumLeft) {
+    taxSum2 += (sumLeft - 15000) * 0.2;
+    sumLeft = 15000;
+} else if (income2 > 15000 && income2 < 50000) {
+    taxSum2 = (income2 - 15000) * 0.2;
+    sumLeft = 15000;
+} 
+
+if (sumLeft) {
+    taxSum2 += sumLeft * 0.13;
+    sumLeft = 0;
+} else if (income2 > 0 && income2 < 15000) {
+    taxSum2 = income2 * 0.13;
+    sumLeft = 0;
+} else {
+    alert('Сумма дохода для расчета должна быть больше 0!')
+}
+
+console.log('Сумма налога: ' + taxSum2);
+
+
