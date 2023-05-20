@@ -6,9 +6,8 @@ const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
 
 const filter = (allStudentsArr, failedStudentsArr) => {
 
-    const succeededStudents = allStudentsArr.filter(item => failedStudentsArr.indexOf(item) === -1)
+    return allStudentsArr.filter(item => failedStudentsArr.indexOf(item) === -1)
 
-    return succeededStudents;
 };
 
 console.log(filter(allStudents, failedStudents));
