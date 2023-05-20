@@ -4,19 +4,11 @@ const allStudents = ['Иванов', 'Петров', 'Сидоров', 'Кузн
 
 const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
 
-const filter = (arr1, arr2) => {
-    const allStudentsClone = [...arr1];
-    const failedStudentsClone = [...arr2];
+const filter = (allStudentsArr, failedStudentsArr) => {
 
-    for (let key1 of allStudentsClone) {
-        for (let key2 of failedStudentsClone) {
-            if (key1 === key2) {
-                allStudentsClone.splice(allStudentsClone.indexOf(key1), 1);
-            }
-        }
-    }
+    const succeededStudents = allStudentsArr.filter(item => failedStudentsArr.indexOf(item) === -1)
 
-    return allStudentsClone;
+    return succeededStudents;
 };
 
 console.log(filter(allStudents, failedStudents));

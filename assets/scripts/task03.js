@@ -1,15 +1,12 @@
 'use strict';
 
-const names= ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
+const names = ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
 
 const addPrefix = (arr, prefix) => {
-    const newNames = [];
+    const newNames = [...arr];
 
-    for (let key of arr) {
-        newNames.push(`${prefix} ${key}`);
-    }
-
-    return newNames;
+    return newNames.map(item => `${prefix} ${item}`);
 }
 
 console.log(addPrefix(names, 'Mr'));
+

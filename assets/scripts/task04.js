@@ -11,36 +11,13 @@ const allCashbox2 = [
     [1, 370]
 ];
 
-const countArraySum = (array) => {
-    let sum = 0; 
-
-    for (let i of array) {
-        sum += i;
-    }
-    return sum;
-};
-
 const getAveragePriceGoods = (arr) => {
 
-    const amountArr = [];
-    const valueArr = [];
+    const amount = arr.reduce((sum, value) => sum = sum + value[0], 0);
+    const value = arr.reduce((sum, value) => sum = sum + value[1], 0);
 
-    for (let elem of arr) {
-        for (let key of elem) {
+    return value / amount;
+}    
 
-            if (elem.indexOf(key) === 0) {
-                amountArr.push(key);
-            } else {
-                valueArr.push(key);
-            }
-        }
-    }
-
-    const amountTotal = countArraySum(amountArr);
-    const valueTotal = countArraySum(valueArr);
-
-    return Math.round(valueTotal / amountTotal);
-};
-
-console.log('Средняя стоимость одного товара в магазине: ' + getAveragePriceGoods(allCashbox2) + ' рублей');
+console.log('Средняя стоимость одного товара в магазине: ' + Math.round(getAveragePriceGoods(allCashbox2)) + ' рублей');
 
