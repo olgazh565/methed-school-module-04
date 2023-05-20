@@ -16,8 +16,8 @@ const getAveragePriceGoods = (arr) => {
     const amount = arr.reduce((sum, value) => sum = sum + value[0], 0);
     const value = arr.reduce((sum, value) => sum = sum + value[1], 0);
 
-    return value / amount;
+    return Math.round(value / amount);
 }    
 
-console.log('Средняя стоимость одного товара в магазине: ' + Math.round(getAveragePriceGoods(allCashbox2)) + ' рублей');
+console.log('Средняя стоимость одного товара в магазине: ' + getAveragePriceGoods(allCashbox2) + ' рублей');
 
