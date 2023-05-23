@@ -1,14 +1,14 @@
 'use strict';
 
-const allStudents = ['Иванов', 'Петров', 'Сидоров', 'Кузнецов', 'Смирнов', 'Попов', 'Соколов'];
+const generateArray = (arrLength) => {
 
-const failedStudents = ['Сидоров', 'Смирнов', 'Попов'];
+    let arr = [];
 
-const filter = (allStudentsArr, failedStudentsArr) => {
+    while (arr.length < arrLength) {
+        arr.push(Math.ceil(Math.random() * 100));
+    }
 
-    const succeededStudents = allStudentsArr.filter(item => failedStudentsArr.indexOf(item) === -1)
+    return arr;
+}
 
-    return succeededStudents;
-};
-
-console.log(filter(allStudents, failedStudents));
+console.log(generateArray(10));

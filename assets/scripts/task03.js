@@ -1,12 +1,27 @@
 'use strict';
 
-const names = ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
+const generateArray = (arrLength, n, m, str) => {
 
-const addPrefix = (arr, prefix) => {
-    const newNames = [...arr];
+    let arr = [];
 
-    return newNames.map(item => `${prefix} ${item}`);
+    while (arr.length < arrLength) {
+
+        const elem = (n > m) ? Math.ceil(Math.random() * (n - m)) + m : Math.ceil(Math.random() * (m - n)) + n;
+        
+        if (str === 'even') {
+            if (elem % 2 === 0) {
+                arr.push(elem);
+            } else continue;
+        } else if (str === 'odd') {
+            if (elem % 2 !== 0) {
+                arr.push(elem);
+            } else continue;
+        } else {
+            arr.push(elem);
+        }
+    }
+
+    return arr;
 }
 
-console.log(addPrefix(names, 'Mr'));
-
+console.log(generateArray(10, -15, 15, 'odd'));

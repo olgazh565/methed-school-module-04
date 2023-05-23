@@ -1,23 +1,22 @@
 'use strict';
 
-const allCashbox2 = [
-    [12, 4500],
-    [7, 3210],
-    [4, 650],
-    [3, 1250],
-    [9, 7830],
-    [1, 990],
-    [6, 13900],
-    [1, 370]
-];
+const generateArray = (arrLength, n, m) => {
 
-const getAveragePriceGoods = (arr) => {
+    let arr = [];
 
-    const amount = arr.reduce((sum, value) => sum = sum + value[0], 0);
-    const value = arr.reduce((sum, value) => sum = sum + value[1], 0);
+    while (arr.length < arrLength) {
 
-    return value / amount;
-}    
+        const year = (n > m) ? Math.ceil(Math.random() * (n - m)) + m : Math.ceil(Math.random() * (m - n)) + n;
 
-console.log('Средняя стоимость одного товара в магазине: ' + Math.round(getAveragePriceGoods(allCashbox2)) + ' рублей');
+        const date = new Date(year, 1, 29).getDate();
+
+        if (date === 29) {
+            arr.push(year); 
+        } else continue;
+    }
+
+    return arr;
+}
+
+console.log(generateArray(10, 1930, 2023));
 
