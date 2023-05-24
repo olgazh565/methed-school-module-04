@@ -3,25 +3,18 @@
 const generateArray = (arrLength, n, m, str) => {
 
     let arr = [];
+    const rules = ['even', 'odd'].indexOf(str);
+    console.log('rules: ', rules);
+
+    n < m && ([n, m] = [m, n]);
 
     while (arr.length < arrLength) {
 
         const elem = Math.floor(Math.random() * (n - m + 1)) + m;
 
-        if (str === 'even') {
-            if (elem % 2 === 0) {
-                arr.push(elem);
-            } 
-        } else if (str === 'odd') {
-            if (elem % 2 !== 0) {
-                arr.push(elem);
-            } 
-        } else {
-            arr.push(elem);
-        }
+        if (rules === -1 || Math.abs(elem % 2) === rules) arr.push(elem);
     }
-
     return arr;
 }
 
-console.log(generateArray(10, -15, 15, 'even'));
+console.log(generateArray(100, -15, 15));
