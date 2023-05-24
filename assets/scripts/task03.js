@@ -17,4 +17,4 @@ const generateArray = (arrLength, n, m, str) => {
     return arr;
 }
 
-console.log(generateArray(100, -15, 15));
+console.log(generateArray(100, -15, 15, 'odd'));
