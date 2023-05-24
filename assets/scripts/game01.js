@@ -1,24 +1,33 @@
 'use strict';
 
-const number = Math.ceil(Math.random() * 100);
+const botNumber = Math.ceil(Math.random() * 100);
+let userNumber;
 
-while (true) {
-    const userNumber = prompt('Угадай число от 1 до 100', '');
+while ((userNumber !== null) && (+userNumber !== botNumber)) {
+    userNumber = prompt('Угадай число от 1 до 100', '');
 
-    if (userNumber === null) {
-        alert('Игра окончена!');
-        break;
-    } else { 
-        if (Number.isNaN(+userNumber) || userNumber === '' || userNumber === ' ') {
+    switch (true) {
+        case userNumber === null:
+            alert('Игра окончена!');
+            break;
+        case Number.isNaN(userNumber):
             alert('Введи число!');
-        } else if (+userNumber > number) {
+            break;
+        case (userNumber === ''):
+            alert('Введи число!');
+            break;
+        case (userNumber === ' '):
+            alert('Введи число!');
+            break;
+        case +userNumber > botNumber:
             alert('Меньше!');
-        } else if (+userNumber < number) {
+            break;    
+        case +userNumber < botNumber:
             alert('Больше!');
-        } else if (+userNumber === number) {
+            break;
+        default:
             alert('Правильно!');
             break;
-        }
     }
 }
 

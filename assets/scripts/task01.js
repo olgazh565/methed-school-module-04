@@ -11,4 +11,4 @@ const generateArray = (arrLength) => {
     return arr;
 }
 
-console.log(generateArray(10));
+console.log(generateArray(100));

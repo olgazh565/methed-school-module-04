@@ -2,41 +2,48 @@
 
 const userRangeMin = +prompt('Введи первое число', '');
 const userRangeMax = +prompt('Введи второе число', '');
-const botNumber = Math.ceil(Math.random() * (userRangeMax - userRangeMin)) + userRangeMin;
-const range = userRangeMax - userRangeMin;
+const botNumber = Math.ceil(Math.random() * (userRangeMax - userRangeMin + 1)) + userRangeMin;
+const attempts = (userRangeMax - userRangeMin) * 0.3;
 
-let attempts;
 let numbersArray = [];
+let userNumber;
 
-if (range >= 50 && range <= 100) {
-    attempts = 15;
-    } else {
-        attempts = Math.round(range * 0.3);
-    }
+while (attempts && (+userNumber !== botNumber) && (userNumber !== null)) {
 
-while (attempts) {
+    userNumber = prompt('Угадай число', '');
 
-    const userNumber = prompt('Угадай число', '');
-    
-    if (userNumber === null) {
-        alert('Игра окончена!');
-        break;
-    } else {
-        if (Number.isNaN(+userNumber) || userNumber === '' || userNumber === ' ') {
+    switch (true) {
+        case userNumber === null:
+            alert('Игра окончена!');
+            break;
+        case Number.isNaN(userNumber):
             alert('Введи число!');
-        } else if (numbersArray.includes(+userNumber)) { 
+            break;
+        case (userNumber === ''):
+            alert('Введи число!');
+            break;
+        case (userNumber === ' '):
+            alert('Введи число!');
+            break;
+        case numbersArray.includes(+userNumber):
             alert('Это число вы уже вводили!');
-        } else if (+userNumber > botNumber) {
+            break;
+        case +userNumber > botNumber:
             alert('Меньше!');
             numbersArray.push(+userNumber);
             attempts--;
-        } else if (+userNumber < botNumber) {
+            break;    
+        case +userNumber < botNumber:
             alert('Больше!');
             numbersArray.push(+userNumber);
             attempts--;
-        } else if (+userNumber === botNumber) {
+            break;
+        default:
             alert('Правильно!');
             break;
-        } 
+    }
+
+    if (!attempts) {
+        alert ('Попыток больше нет!');
     }
 }
