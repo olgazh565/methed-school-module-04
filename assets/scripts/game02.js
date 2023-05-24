@@ -2,7 +2,7 @@
 
 const userRangeMin = +prompt('Введи первое число', '');
 const userRangeMax = +prompt('Введи второе число', '');
-const botNumber = Math.ceil(Math.random() * (userRangeMax - userRangeMin + 1)) + userRangeMin;
+const botNumber = Math.round(Math.random() * (userRangeMax - userRangeMin + 1)) + userRangeMin;
 const attempts = (userRangeMax - userRangeMin) * 0.3;
 
 let numbersArray = [];
