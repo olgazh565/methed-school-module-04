@@ -1,40 +1,40 @@
 'use strict';
 
 const cart = {
-    items: [],
-    get totalPrice() {
-        return this.calculateItemPrice();
-    },
-    count: 0,
+  items: [],
+  get totalPrice() {
+    return this.calculateItemPrice();
+  },
+  count: 0,
 
-    add(name, price, amount = 1) {
-        const item = {
-            name,
-            price,
-            amount,
-        };
+  add(name, price, amount = 1) {
+    const item = {
+      name,
+      price,
+      amount,
+    };
 
-        this.items.push(item);
-        this.increaseCount(amount);
-    },
+    this.items.push(item);
+    this.increaseCount(amount);
+  },
 
-    increaseCount(amount) {
-        this.count += amount;
-    },
+  increaseCount(amount) {
+    this.count += amount;
+  },
 
-    calculateItemPrice() {
-        return this.items.reduce((acc, item) => (acc + (item.price * item.amount)), 0);
-    },
+  calculateItemPrice() {
+    return this.items.reduce((acc, item) => acc + item.price * item.amount, 0);
+  },
 
-    clear() {
-        this.items = [];
-        this.count = 0;
-    },
+  clear() {
+    this.items = [];
+    this.count = 0;
+  },
 
-    print() {
-        console.log(JSON.stringify(this.items));
-        console.log(`Общая стоимость корзины: ${this.totalPrice}`);
-    }
+  print() {
+    console.log(JSON.stringify(this.items));
+    console.log(`Общая стоимость корзины: ${this.totalPrice}`);
+  },
 };
 
 cart.add('bread', 100, 2);
