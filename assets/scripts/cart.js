@@ -2,7 +2,9 @@
 
 const cart = {
     items: [],
-    totalPrice: 0,
+    get totalPrice() {
+        return this.calculateItemPrice();
+    },
     count: 0,
 
     add(name, price, amount = 1) {
@@ -14,11 +16,6 @@ const cart = {
 
         this.items.push(item);
         this.increaseCount(amount);
-        this.calculateItemPrice();
-    },
-
-    getTotalPrice() {
-        return this.totalPrice;
     },
 
     increaseCount(amount) {
@@ -26,18 +23,17 @@ const cart = {
     },
 
     calculateItemPrice() {
-        this.totalPrice = this.items.reduce((acc, item) => (acc + (item.price * item.amount)), 0);
+        return this.items.reduce((acc, item) => (acc + (item.price * item.amount)), 0);
     },
 
     clear() {
         this.items = [];
-        this.totalPrice = 0;
         this.count = 0;
     },
 
     print() {
         console.log(JSON.stringify(this.items));
-        console.log(`Общая стоимость корзины: ${this.getTotalPrice()}`);
+        console.log(`Общая стоимость корзины: ${this.totalPrice}`);
     }
 };
 
@@ -47,6 +43,3 @@ cart.add('apples', 150, 10);
 cart.add('meat', 500, 1);
 
 cart.print();
-
-
-
