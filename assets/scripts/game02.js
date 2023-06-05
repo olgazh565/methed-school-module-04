@@ -16,7 +16,7 @@ while (attempts > numbersArray.length && (+userNumber !== botNumber) && (userNum
         case userNumber === null:
             alert('Игра окончена!');
             break;
-        case Number.isNaN(userNumber):    
+        case Number.isNaN(+userNumber):    
         case (!userNumber.trim()):
         case (+userNumber < userRangeMin):
         case (+userNumber > userRangeMax):

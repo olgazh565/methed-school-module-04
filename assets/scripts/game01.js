@@ -11,17 +11,11 @@ while ((userNumber !== null) && (+userNumber !== botNumber)) {
         case userNumber === null:
             alert('Игра окончена!');
             break;
-            case Number.isNaN(userNumber):    
+            case Number.isNaN(+userNumber):    
             case (!userNumber.trim()):
             case (+userNumber < 0):
             case (+userNumber > 100):
             alert('Введи число от 1 до 100!');
-            break;
-        case (userNumber === ''):
-            alert('Введи число!');
-            break;
-        case (userNumber === ' '):
-            alert('Введи число!');
             break;
         case +userNumber > botNumber:
             alert('Меньше!');
