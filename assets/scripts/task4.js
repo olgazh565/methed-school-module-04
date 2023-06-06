@@ -24,12 +24,8 @@ const cart = {
     },
 
     calculateItemPrice() {
-        if (this.discount) {
-            return (this.items.reduce((acc, item) =>
-                acc + item.price * item.amount, 0)) *
-                ((100 - this.discount) / 100);
-        } return this.items.reduce((acc, item) =>
-            acc + item.price * item.amount, 0);
+        return (this.items.reduce((acc, item) =>
+            acc + item.price * item.amount, 0)) * ((100 - this.discount) / 100);
     },
 
     clear() {
@@ -43,10 +39,16 @@ const cart = {
     },
 
     set setDiscount(value) {
-        if (value === 'METHED') {
-            this.discount = 15;
-        } else if (value === 'NEWYEAR') {
-            this.discount = 21;
+        switch (value) {
+            case 'METHED':
+                this.discount = 15;
+                break;
+            case 'NEWYEAR':
+                this.discount = 21;
+                break;
+            default:
+                this.discount = 0;
+                break;
         }
     },
 };

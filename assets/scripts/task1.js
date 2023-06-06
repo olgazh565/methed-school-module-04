@@ -8,26 +8,24 @@ const guessNumber = (num) => {
     switch (true) {
         case userNumber === null:
             alert('Игра окончена!');
-            break;
-        case +userNumber === botNumber:
-            alert('Правильно!');
-            break;
+            return null;
         case Number.isNaN(+userNumber):
         case (!userNumber.trim()):
         case (+userNumber < 0):
         case (+userNumber > 100):
             alert('Введи число от 1 до 100!');
-            guessNumber(num);
             break;
         case +userNumber > botNumber:
             alert('Меньше!');
-            guessNumber(num);
             break;
         case +userNumber < botNumber:
             alert('Больше!');
-            guessNumber(num);
             break;
+        default:
+            alert('Правильно!');
+            return num;
     }
+    return guessNumber(num);
 };
 
 guessNumber(botNumber);

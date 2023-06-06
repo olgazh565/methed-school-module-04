@@ -1,22 +1,24 @@
 'use strict';
 
 const rectangle = {
-    set rectangleWidth(value) {
-        this.width = typeof value === 'number' ? value : 5;
+    _width: 5,
+    _height: 5,
+    set width(value) {
+        this._width = value;
     },
-    set rectangleHeight(value) {
-        this.height = typeof value === 'number' ? value : 5;
+    set height(value) {
+        this._height = value;
     },
-    get rectanglePerimeter() {
-        return (this.width + this.height) * 2 + ' см';
+    get perimeter() {
+        return (this._width + this._height) * 2 + ' см';
     },
-    get rectangleSquare() {
-        return this.width * this.height + ' см';
+    get square() {
+        return this._width * this._height + ' см';
     },
 };
 
-rectangle.rectangleWidth = 150;
-rectangle.rectangleHeight = 75;
+rectangle.width = 50;
+rectangle.height = 25;
 
-console.log('Периметр прямоугольника: ', rectangle.rectanglePerimeter);
-console.log('Площать прямоугольника: ', rectangle.rectangleSquare);
+console.log('Периметр прямоугольника: ', rectangle.perimeter);
+console.log('Площать прямоугольника: ', rectangle.square);
