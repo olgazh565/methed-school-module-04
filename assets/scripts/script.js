@@ -1,5 +1,5 @@
 'use strict';
 
-const startGame = window.rockPaperSissors('EN');
+const startGame = window.rockPaperSissors();
 startGame();
 

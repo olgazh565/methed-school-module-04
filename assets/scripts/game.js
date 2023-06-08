@@ -4,71 +4,87 @@
     const FIGURES_ENG = ['rock', 'sissors', 'paper'];
     const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
 
-    const getRandomElem = (arr) => {
-        //получаем случайное число от 0 до 2, кот.используется как индекс элемента массива для хода компьютера
-        const index = Math.round(Math.random() * (arr.length - 1));
-        // console.log('x: ', index);
+    const langArray = {
+        ru: {
+            total: 'Общий счет',
+            you: 'Вы',
+            computer: 'Компьютер',
+            confirm: 'Вы точно хотите выйти из игры?',
+            tie: 'Ничья!',
+            computerWon: 'Компьютер выиграл :(',
+            youWon: 'Вы выиграли!',
+        },
+        en: {
+            total: 'Total score',
+            you: 'You',
+            computer: 'Computer',
+            confirm: 'Are you sure you want to quit?',
+            tie: 'It is a tie!',
+            computerWon: 'Computer won :(',
+            youWon: 'You won!',
+        },
+    };
 
+    const getRandomElem = (arr) => {
+        const index = Math.round(Math.random() * (arr.length - 1));
         return index;
     };
 
-    // const getFigure = lang => {
-
-    // };
-
     const game = (language) => {
+        const figuresLang = language === 'EN' || language === 'ENG' ?
+            FIGURES_ENG : FIGURES_RUS;
+
+        const textLang = language === 'EN' || language === 'ENG' ?
+            langArray.en : langArray.ru;
+
         const result = {
             user: 0,
             computer: 0,
             get total() {
                 return alert(`
-                    Общий счет:
-                    Вы: ${this.user}
-                    Компьютер: ${this.computer}`);
+                    ${textLang.total}:
+                    ${textLang.you}: ${this.user}
+                    ${textLang.computer}: ${this.computer}`);
             },
         };
 
-        const lang = language === 'EN' || language === 'ENG' ?
-            FIGURES_ENG : FIGURES_RUS;
-
         return function start() {
-            const computerChoice = getRandomElem(lang);
-            const userChoice = prompt(`${lang.join(', ')}?`);
+            const computerChoice = getRandomElem(figuresLang);
+            const userChoice = prompt(`${figuresLang.join(', ')}?`);
 
             const userChoiceCheck = () => {
-                for (const elem of lang) {
+                for (const elem of figuresLang) {
                     if (elem.startsWith(userChoice?.toLowerCase())) {
-                        return lang.indexOf(elem);
+                        return figuresLang.indexOf(elem);
                     }
                 } return false;
             };
-            console.log(userChoiceCheck());
 
             const showRoundResult = (message) => {
                 alert(`
-                    Компьютер: ${lang[computerChoice]}
-                    Вы: ${lang[userChoiceCheck()]}
+                    ${textLang.computer}: ${figuresLang[computerChoice]}
+                    ${textLang.you}: ${figuresLang[userChoiceCheck()]}
                     ${message}`);
             };
 
             switch (true) {
                 case userChoice === null:
-                    if (confirm('Вы точно хотите выйти из игры?')) {
+                    if (confirm(textLang.confirm)) {
                         return result.total;
                     } break;
                 case userChoiceCheck() === false:
                     break;
                 case computerChoice === userChoiceCheck():
-                    showRoundResult('Ничья :)');
+                    showRoundResult(textLang.tie);
                     break;
                 case (computerChoice === 0 && userChoiceCheck() === 1):
                 case (computerChoice === 1 && userChoiceCheck() === 2):
                 case (computerChoice === 2 && userChoiceCheck() === 0):
-                    showRoundResult('Компьютер выиграл :(');
+                    showRoundResult(textLang.computerWon);
                     result.computer += 1;
                     break;
                 default:
-                    showRoundResult('Вы выиграли!');
+                    showRoundResult(textLang.youWon);
                     result.user += 1;
                     break;
             }
