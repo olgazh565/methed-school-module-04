@@ -2,15 +2,9 @@
 
 const array = [];
 
-const generateArray = (arr) => {
-    if (arr.reduce((sum, item) => sum + item, 0) >= 50) {
-        return arr;
-    } else {
-        const elem = Math.round(Math.random() * 10);
-        arr.push(elem);
-        return generateArray(arr);
-    }
-};
+const generateArray = arr =>
+    (arr.reduce((sum, item) => sum + item, 0) >= 50 ?
+            arr : generateArray([...arr, Math.round(Math.random() * 10)]));
 
 console.log(generateArray(array));
 
