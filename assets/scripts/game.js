@@ -50,20 +50,23 @@
 
         return function start() {
             const computerChoice = getRandomElem(figuresLang);
-            const userChoice = prompt(`${figuresLang.join(', ')}?`);
+            const userChoice = prompt(`${figuresLang.join(', ')}?`, '');
 
-            const userChoiceCheck = () => {
+            const checkUserChoice = () => {
                 for (const elem of figuresLang) {
-                    if (elem.startsWith(userChoice?.toLowerCase())) {
+                    if (elem.startsWith(userChoice?.trim().toLowerCase()) &&
+                            userChoice.length > 0) {
                         return figuresLang.indexOf(elem);
                     }
                 } return false;
             };
 
+            const userChoiceChecked = checkUserChoice();
+
             const showRoundResult = (message) => {
                 alert(`
                     ${textLang.computer}: ${figuresLang[computerChoice]}
-                    ${textLang.you}: ${figuresLang[userChoiceCheck()]}
+                    ${textLang.you}: ${figuresLang[userChoiceChecked]}
                     ${message}`);
             };
 
@@ -72,14 +75,12 @@
                     if (confirm(textLang.confirm)) {
                         return result.total;
                     } break;
-                case userChoiceCheck() === false:
+                case userChoiceChecked === false:
                     break;
-                case computerChoice === userChoiceCheck():
+                case computerChoice === userChoiceChecked:
                     showRoundResult(textLang.tie);
                     break;
-                case (computerChoice === 0 && userChoiceCheck() === 1):
-                case (computerChoice === 1 && userChoiceCheck() === 2):
-                case (computerChoice === 2 && userChoiceCheck() === 0):
+                case ((computerChoice + 1) % 3 === userChoiceChecked):
                     showRoundResult(textLang.computerWon);
                     result.computer += 1;
                     break;
