@@ -52,16 +52,21 @@
             const computerChoice = getRandomElem(figuresLang);
             const userChoice = prompt(`${figuresLang.join(', ')}?`, '');
 
-            const checkUserChoice = () => {
+            const checkUserChoice = userChoice => {
+                if (userChoice === null) return null;
+
+                userChoice = userChoice.trim().toLowerCase();
+
                 for (const elem of figuresLang) {
-                    if (elem.startsWith(userChoice?.trim().toLowerCase()) &&
-                            userChoice.length > 0) {
+                    if (userChoice.length && elem.startsWith(userChoice)) {
                         return figuresLang.indexOf(elem);
                     }
-                } return false;
+                }
+
+                return false;
             };
 
-            const userChoiceChecked = checkUserChoice();
+            const userChoiceChecked = checkUserChoice(userChoice);
 
             const showRoundResult = (message) => {
                 alert(`
@@ -71,7 +76,7 @@
             };
 
             switch (true) {
-                case userChoice === null:
+                case userChoiceChecked === null:
                     if (confirm(textLang.confirm)) {
                         return result.total;
                     } break;
