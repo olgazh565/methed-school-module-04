@@ -30,7 +30,6 @@
                     (balls.user > balls.bot && +userNumber > balls.bot)) {
                     return false;
                 }
-
                 return userNumber % 2 ? 'НЕЧЕТНОЕ' : 'ЧЕТНОЕ';
             };
 
@@ -39,10 +38,8 @@
 
             const countResult = message => {
                 message === 'Бот выиграл :(' ?
-                    (balls.user -= +userNumber,
-                    balls.bot += +userNumber) :
-                    (balls.user += +userNumber,
-                    balls.bot -= +userNumber);
+                    (balls.user -= +userNumber, balls.bot += +userNumber) :
+                    (balls.user += +userNumber, balls.bot -= +userNumber);
             };
 
             const showRoundResult = (message, callback) => {
