@@ -1,5 +1,5 @@
 'use strict';
 
-const startGame = window.rockPaperSissors();
+const startGame = window.marbles();
 startGame();
 

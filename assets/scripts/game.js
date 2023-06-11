@@ -1,102 +1,83 @@
 'use strict';
 
 (() => {
-    const FIGURES_ENG = ['rock', 'sissors', 'paper'];
-    const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
-
-    const langArray = {
-        ru: {
-            total: 'Общий счет',
-            you: 'Вы',
-            computer: 'Компьютер',
-            confirm: 'Вы точно хотите выйти из игры?',
-            tie: 'Ничья!',
-            computerWon: 'Компьютер выиграл :(',
-            youWon: 'Вы выиграли!',
-        },
-        en: {
-            total: 'Total score',
-            you: 'You',
-            computer: 'Computer',
-            confirm: 'Are you sure you want to quit?',
-            tie: 'It is a tie!',
-            computerWon: 'Computer won :(',
-            youWon: 'You won!',
-        },
-    };
-
-    const getRandomElem = (arr) => {
-        const index = Math.round(Math.random() * (arr.length - 1));
-        return index;
-    };
-
-    const game = (language) => {
-        const figuresLang = language === 'EN' || language === 'ENG' ?
-            FIGURES_ENG : FIGURES_RUS;
-
-        const textLang = language === 'EN' || language === 'ENG' ?
-            langArray.en : langArray.ru;
-
-        const result = {
-            user: 0,
-            computer: 0,
+    const game = () => {
+        const balls = {
+            user: 5,
+            bot: 5,
             get total() {
-                return alert(`
-                    ${textLang.total}:
-                    ${textLang.you}: ${this.user}
-                    ${textLang.computer}: ${this.computer}`);
+                return `
+                Общий счет:
+                Ты: ${this.user}
+                Бот: ${this.bot}`;
             },
         };
 
         return function start() {
-            const computerChoice = getRandomElem(figuresLang);
-            const userChoice = prompt(`${figuresLang.join(', ')}?`, '');
+            const randomEvenOdd = () => (Math.round(Math.random() * 100) % 2 ?
+            'НЕЧЕТНОЕ' : 'ЧЕТНОЕ');
 
-            const checkUserChoice = userChoice => {
-                if (userChoice === null) return null;
+            const botGuess = randomEvenOdd();
+            console.log('botGuess: ', botGuess);
 
-                userChoice = userChoice.trim().toLowerCase();
+            const userNumber = balls.user > balls.bot ?
+                prompt(`Загадай число от 1 до ${balls.bot}`, '') :
+                prompt(`Загадай число от 1 до ${balls.user}`, '');
 
-                for (const elem of figuresLang) {
-                    if (userChoice.length && elem.startsWith(userChoice)) {
-                        return figuresLang.indexOf(elem);
-                    }
+            const transformUserNumber = userNumber => {
+                if (userNumber === null) {
+                    return null;
+                } else if (isNaN(+userNumber) || !userNumber.length ||
+                    +userNumber < 1 || +userNumber > balls.user ||
+                    (balls.user > balls.bot && +userNumber > balls.bot)) {
+                    return false;
                 }
 
-                return false;
+                return userNumber % 2 ? 'НЕЧЕТНОЕ' : 'ЧЕТНОЕ';
             };
 
-            const userChoiceChecked = checkUserChoice(userChoice);
+            const userChoice = transformUserNumber(userNumber);
+            console.log('userChoice: ', userChoice);
 
-            const showRoundResult = (message) => {
+            const countResult = message => {
+                message === 'Бот выиграл :(' ?
+                    (balls.user -= +userNumber,
+                    balls.bot += +userNumber) :
+                    (balls.user += +userNumber,
+                    balls.bot -= +userNumber);
+            };
+
+            const showRoundResult = (message, callback) => {
+                callback(message);
                 alert(`
-                    ${textLang.computer}: ${figuresLang[computerChoice]}
-                    ${textLang.you}: ${figuresLang[userChoiceChecked]}
-                    ${message}`);
+                Ты загадал: ${userChoice} число
+                Догадка бота: ${botGuess} число
+                ${message}
+                ${balls.total}
+                `);
             };
 
             switch (true) {
-                case userChoiceChecked === null:
-                    if (confirm(textLang.confirm)) {
-                        return result.total;
-                    } break;
-                case userChoiceChecked === false:
+                case userChoice === null:
+                    return null;
+                case userChoice === false:
                     break;
-                case computerChoice === userChoiceChecked:
-                    showRoundResult(textLang.tie);
-                    break;
-                case ((computerChoice + 1) % 3 === userChoiceChecked):
-                    showRoundResult(textLang.computerWon);
-                    result.computer += 1;
+                case userChoice === botGuess:
+                    showRoundResult('Бот выиграл :(', countResult);
                     break;
                 default:
-                    showRoundResult(textLang.youWon);
-                    result.user += 1;
+                    showRoundResult('Ты выиграл! :)', countResult);
                     break;
+            }
+
+            if (balls.user === 0 || balls.bot === 0) {
+                return alert(`
+                Игра окончена!
+                ${balls.total}
+                `);
             }
             return start();
         };
     };
-
-    window.rockPaperSissors = game;
+    window.marbles = game;
 })();
