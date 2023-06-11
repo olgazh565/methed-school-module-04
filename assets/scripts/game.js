@@ -14,10 +14,8 @@
         };
 
         return function start() {
-            const randomEvenOdd = () => (Math.round(Math.random() * 100) % 2 ?
-            'НЕЧЕТНОЕ' : 'ЧЕТНОЕ');
-
-            const botGuess = randomEvenOdd();
+            const botGuess = Math.round(Math.random() * 100) % 2 ?
+                'НЕЧЕТНОЕ' : 'ЧЕТНОЕ';
             console.log('botGuess: ', botGuess);
 
             const userNumber = balls.user > balls.bot ?
