@@ -50,11 +50,12 @@
               'Какое число загадал бот? ОК - четное, ОТМЕНА - нечетное') ?
               'ЧЕТНОЕ' : 'НЕЧЕТНОЕ';
 
-          return [userGuess, ''];
+          return [userGuess];
         }
       };
 
-      const [userChoice, userNumber] = changeUserMove();
+      const [userChoice, userNumber = ''] = changeUserMove();
+      console.log('userNumber: ', userNumber);
       const scoreCount = isUserTurn ? +userNumber : +botNumber;
 
       const countResult = message => {
