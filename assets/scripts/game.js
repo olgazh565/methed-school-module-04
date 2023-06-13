@@ -8,6 +8,10 @@
     const balls = {
       user: 5,
       bot: 5,
+      reset() {
+        this.user = 5;
+        this.bot = 5;
+      },
       get total() {
         return `
           Общий счет:
@@ -32,8 +36,8 @@
         const changeUserMove = () => {
           if (isUserTurn === 'userTurn') {
             const userNumber = balls.user > balls.bot ?
-              prompt(`Твой ход! Загадай число от 1 до ${balls.bot}`, '') :
-              prompt(`Твой ход! Загадай число от 1 до ${balls.user}`, '');
+                prompt(`Твой ход! Загадай число от 1 до ${balls.bot}`, '') :
+                prompt(`Твой ход! Загадай число от 1 до ${balls.user}`, '');
 
             const transformUserNumber = userNumber => {
               if (userNumber === null) {
@@ -114,8 +118,7 @@
           Хочешь сыграть еще?
           `);
           if (endGame) {
-            balls.user = 5;
-            balls.bot = 5;
+            balls.reset();
             isUserTurn = startRPS();
             return start();
           } return null;
