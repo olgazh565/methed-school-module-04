@@ -86,7 +86,8 @@
           case userChoice === null:
             return null;
           case userChoice === false:
-            break;
+            alert('Неверное число!');
+            return start();
           case (userChoice === botChoice):
             if (isUserTurn === 'userTurn') {
               showRoundResult('Бот выиграл :(', countResult);
