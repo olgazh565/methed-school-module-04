@@ -1,64 +1,77 @@
 'use strict';
 
-const cart = {
-    items: [],
-    count: 0,
+const Cart = function() {
+    this.goods = [];
+    this.totalPrice = 0;
+    this.count = 0;
 
-    get totalPrice() {
-        return this.calculateItemPrice();
-    },
+    this.addGoods = function(product) {
+        this.goods.push(product);
+        this.increaseCount();
+    };
 
-    add(name, price, amount = 1) {
-        const item = {
-            name,
-            price,
-            amount,
-        };
+    this.calculateGoodsPrice = function() {
+        this.totalPrice = (this.goods.reduce((acc, item) =>
+            acc + item.price * ((100 - item.discount) / 100), 0));
+        return this.totalPrice;
+    };
 
-        this.items.push(item);
-        this.increaseCount(amount);
-    },
+    this.getTotalPrice = function() {
+        return this.calculateGoodsPrice();
+    };
 
-    increaseCount(amount) {
-        this.count += amount;
-    },
+    this.increaseCount = function() {
+        return this.count += 1;
+    };
 
-    calculateItemPrice() {
-        return (this.items.reduce((acc, item) =>
-            acc + item.price * item.amount, 0)) * ((100 - this.discount) / 100);
-    },
-
-    clear() {
-        this.items = [];
+    this.clear = function() {
+        this.goods = [];
+        this.totalPrice = 0;
         this.count = 0;
-    },
+    };
 
-    print() {
-        console.log(JSON.stringify(this.items));
-        console.log(`Общая стоимость корзины: ${Math.round(this.totalPrice)}`);
-    },
-
-    set setDiscount(value) {
-        switch (value) {
-            case 'METHED':
-                this.discount = 15;
-                break;
-            case 'NEWYEAR':
-                this.discount = 21;
-                break;
-            default:
-                this.discount = 0;
-                break;
-        }
-    },
+    this.print = function() {
+        console.log(JSON.stringify(this.goods));
+        console.log(`Общая стоимость корзины: ${Math.round(this.getTotalPrice())} рублей`);
+    };
 };
 
-cart.add('bread', 100, 2);
-cart.add('milk', 80, 3);
-cart.add('apples', 150, 10);
-cart.add('meat', 500, 1);
+const Goods = function(price, title, discount) {
+    this.price = price;
+    this.title = title;
+    this.discount = discount;
+};
 
-// cart.setDiscount = 'METHED';
-cart.setDiscount = 'NEWYEAR';
+const FoodGoods = function(price, title, discount, calories) {
+    Goods.call(this, price, title, discount);
+    this.calories = calories;
+};
+
+const ClothingGoods = function(price, title, discount, material) {
+    Goods.call(this, price, title, discount);
+    this.material = material;
+};
+
+const TechnicsGoods = function(price, title, discount, technicsType) {
+    Goods.call(this, price, title, discount);
+    this.technicsType = technicsType;
+};
+
+const food = new FoodGoods(500, 'apple', 10, '30kkal');
+console.log('food: ', food);
+const clothes = new ClothingGoods(300, 'dress', 5, 'silk');
+console.log('clothes: ', clothes);
+const technics = new TechnicsGoods(5000, 'radio', 15, 'electronic');
+console.log('technics: ', technics);
+
+const cart = new Cart();
+
+cart.addGoods(food);
+cart.addGoods(clothes);
+cart.addGoods(technics);
+
+console.log('cart: ', cart);
 
 cart.print();
+
+

@@ -1,24 +1,64 @@
 'use strict';
 
-const rectangle = {
-    _width: 5,
-    _height: 5,
-    set width(value) {
-        this._width = value;
+const cart = {
+    items: [],
+    count: 0,
+
+    get totalPrice() {
+        return this.calculateItemPrice();
     },
-    set height(value) {
-        this._height = value;
+
+    add(name, price, amount = 1) {
+        const item = {
+            name,
+            price,
+            amount,
+        };
+
+        this.items.push(item);
+        this.increaseCount(amount);
     },
-    get perimeter() {
-        return (this._width + this._height) * 2 + ' см';
+
+    increaseCount(amount) {
+        this.count += amount;
     },
-    get square() {
-        return this._width * this._height + ' см';
+
+    calculateItemPrice() {
+        return (this.items.reduce((acc, item) =>
+            acc + item.price * item.amount, 0)) * ((100 - this.discount) / 100);
+    },
+
+    clear() {
+        this.items = [];
+        this.count = 0;
+    },
+
+    print() {
+        console.log(JSON.stringify(this.items));
+        console.log(`Общая стоимость корзины: ${Math.round(this.totalPrice)}`);
+    },
+
+    set setDiscount(value) {
+        switch (value) {
+            case 'METHED':
+                this.discount = 15;
+                break;
+            case 'NEWYEAR':
+                this.discount = 21;
+                break;
+            default:
+                this.discount = 0;
+                break;
+        }
     },
 };
 
-rectangle.width = 50;
-rectangle.height = 25;
+cart.add('bread', 100, 2);
+cart.add('milk', 80, 3);
+cart.add('apples', 150, 10);
+cart.add('meat', 500, 1);
 
-console.log('Периметр прямоугольника: ', rectangle.perimeter);
-console.log('Площать прямоугольника: ', rectangle.square);
+// cart.setDiscount = 'METHED';
+cart.setDiscount = 'NEWYEAR';
+
+cart.print();
